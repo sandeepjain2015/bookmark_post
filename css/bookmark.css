@@ -1,0 +1,86 @@
+.bookmark-post-button {
+    padding: 10px 15px !important;
+    border: none;
+    background-color: #0073aa !important;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.bookmark-post-button.bookmarked {
+    background-color: #d54e21;
+}
+
+.bookmark-post-button:hover {
+    background-color: #005177;
+}
+
+/* CSS for Bookmarks List */
+.bookmark-post-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.bookmark-post-list li {
+    margin: 10px 10px 10px 0;
+    display: inline-block; /* Make list items inline-block to adjust width based on content */
+    width: auto; /* Allow each list item to be as wide as its content */
+}
+
+.bookmark-post-list li a {
+    display: block;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+}
+
+.bookmark-post-list li a:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Optional: Styles for "You have no bookmarks." message */
+.bookmark-post-list-empty {
+    color: #999;
+    font-style: italic;
+}
+
+
+#refresh-bookmark-post-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #0073aa;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+#refresh-bookmark-post-button:hover {
+    background-color: #005177;
+}
+.no-bookmark-post-message {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    color: #888;
+}
+#bookmark-post-loader {
+    text-align: center;
+    margin-top: 15px;
+}
+
+#bookmark-post-loader img {
+    width: 30px;
+    height: 30px;
+}
+
