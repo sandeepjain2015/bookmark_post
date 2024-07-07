@@ -14,13 +14,8 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 console.log(response);
-                if (response === 'added') {
-                    button.addClass('bookmarked');
-                    button.text('Unbookmark');
-                } else {
-                    button.removeClass('bookmarked');
-                    button.text('Bookmark');
-                }
+                button.toggleClass('bookmarked', response === 'added');
+                button.text(response === 'added' ? 'Unbookmark' : 'Bookmark');
             },
             error: function(xhr, status, error) {
                 console.error('AJAX Error:', status, error);
@@ -28,14 +23,13 @@ jQuery(document).ready(function($) {
         });
     });
 
-    // Refresh bookmarks button.
+    // Refresh bookmarks button
     $(document).on('click', '#refresh-bookmark-post-button', function() {
         var button = $(this);
-        button.prop('disabled', true); // Disable the button
-        button.text('Refreshing...'); // Change button text
+        button.prop('disabled', true).text('Refreshing...'); // Disable and change text
 
-        // Show loader
-        $('#bookmark-post-loader').show();
+        $('#bookmark-post-loader').show(); // Show loader
+
         $.ajax({
             url: bp_ajax.ajax_url,
             type: 'post',
@@ -50,12 +44,9 @@ jQuery(document).ready(function($) {
                 console.error('AJAX Error:', status, error);
             },
             complete: function() {
-                // Hide loader
-                $('#bookmark-post-loader').hide();
+                $('#bookmark-post-loader').hide(); // Hide loader
 
-                // Re-enable button and reset text
-                button.prop('disabled', false);
-                button.text('Refresh Bookmarks');
+                button.prop('disabled', false).text('Refresh Bookmarks'); // Re-enable and reset text
             }
         });
     });

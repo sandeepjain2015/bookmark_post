@@ -1,8 +1,4 @@
+For access bookmark post, check page <site_url>/bookmarks-list
+In this shortcode [bookmarks_list] used for show bookmark.
 
-Steps for proper functionality work 
-1- Upload this plugin zip file and activate plugin.
-2- Create a page  and add the shortcode [bookmarks_list]
-3- Publish the page.
-
-Now, the page will display the bookmarks list using the [bookmarks_list] shortcode.
-
+Bookmark button will not show on <site_url>/bookmarks-list as not required on other pages it will show.

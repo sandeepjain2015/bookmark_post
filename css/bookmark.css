@@ -1,23 +1,26 @@
-.bookmark-post-button {
-    padding: 10px 15px !important;
+/* General Button Styles */
+.bookmark-post-button,
+#refresh-bookmark-post-button {
+    padding: 10px 15px;
     border: none;
-    background-color: #0073aa !important;
+    background-color: #0073aa;
     color: #fff;
     cursor: pointer;
     border-radius: 3px;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 10px; /* Adjusted margin for consistency */
+}
+
+.bookmark-post-button:hover,
+#refresh-bookmark-post-button:hover {
+    background-color: #005177;
 }
 
 .bookmark-post-button.bookmarked {
     background-color: #d54e21;
 }
 
-.bookmark-post-button:hover {
-    background-color: #005177;
-}
-
-/* CSS for Bookmarks List */
+/* Bookmarks List Styles */
 .bookmark-post-list {
     list-style-type: none;
     padding: 0;
@@ -25,8 +28,7 @@
 
 .bookmark-post-list li {
     margin: 10px 10px 10px 0;
-    display: inline-block; /* Make list items inline-block to adjust width based on content */
-    width: auto; /* Allow each list item to be as wide as its content */
+    display: inline-block;
 }
 
 .bookmark-post-list li a {
@@ -37,12 +39,12 @@
     text-decoration: none;
     color: #333;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
 .bookmark-post-list li a:hover {
     background-color: #e0e0e0;
 }
-
 
 /* Optional: Styles for "You have no bookmarks." message */
 .bookmark-post-list-empty {
@@ -50,21 +52,7 @@
     font-style: italic;
 }
 
-
-#refresh-bookmark-post-button {
-    padding: 10px 15px;
-    border: none;
-    background-color: #0073aa;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: background-color 0.3s ease;
-    margin-top: 15px;
-}
-
-#refresh-bookmark-post-button:hover {
-    background-color: #005177;
-}
+/* No Bookmarks Message */
 .no-bookmark-post-message {
     margin: 10px 0;
     padding: 10px;
@@ -74,6 +62,8 @@
     text-align: center;
     color: #888;
 }
+
+/* Loader Styles */
 #bookmark-post-loader {
     text-align: center;
     margin-top: 15px;
@@ -83,4 +73,3 @@
     width: 30px;
     height: 30px;
 }
-

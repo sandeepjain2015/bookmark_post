@@ -12,6 +12,9 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 $('#bookmark-count').text(response);
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
             }
         });
     });

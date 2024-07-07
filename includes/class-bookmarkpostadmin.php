@@ -23,9 +23,9 @@ class BookmarkPostAdmin {
 	 */
 	public function add_meta_boxes() {
 		global $post;
-		if (has_shortcode($post->post_content, 'bookmarks_list')) {
-            return false;
-        }
+		if ( has_shortcode( $post->post_content, 'bookmarks_list' ) ) {
+			return;
+		}
 		add_meta_box( 'bp_bookmark_count', esc_html__( 'Bookmark Count', 'bookmark-post' ), array( $this, 'bookmark_count_meta_box' ), array( 'post', 'page' ), 'side', 'high' );
 	}
 
@@ -63,13 +63,13 @@ class BookmarkPostAdmin {
 			global $wpdb;
 			$table_name     = $wpdb->prefix . 'bookmarks';
 			$query          = $wpdb->prepare(
-				"SELECT COUNT(*) FROM $table_name WHERE post_id = %d",
+				"SELECT COUNT(*) FROM {$table_name} WHERE post_id = %d",
 				$post_id
 			);
 			$bookmark_count = (int) $wpdb->get_var( $query );
 
 			// Store the bookmark count in the cache.
-			wp_cache_set( $cache_key, $bookmark_count, 'bookmark_post', HOUR_IN_SECONDS );
+			wp_cache_set( $cache_key, $bookmark_count, 'bookmark_post', MINUTE_IN_SECONDS );
 		}
 
 		return $bookmark_count;
@@ -89,20 +89,25 @@ class BookmarkPostAdmin {
 
 	/**
 	 * Enqueue admin scripts.
+	 *
+	 * @param string $hook The current admin page hook.
 	 */
-	public function enqueue_admin_scripts() {
-		wp_enqueue_script( 'bookmark-admin-js', BOOKMARKPOST_PATH . 'js/bookmark-admin.js', array( 'jquery' ), BOOKMARKPOST_VERSION, true );
-		wp_localize_script(
-			'bookmark-admin-js',
-			'bp_admin_ajax',
-			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'bp_ajax_nonce' ),
-			)
-		);
+	public function enqueue_admin_scripts( $hook ) {
+		global $post;
+		if ( ( 'post.php' === $hook || 'post-new.php' === $hook ) && in_array( $post->post_type, array( 'post', 'page' ), true ) && ! has_shortcode( $post->post_content, 'bookmarks_list' ) ) {
+			wp_enqueue_script( 'bookmark-admin-js', BOOKMARKPOST_PATH . 'js/bookmark-admin.js', array( 'jquery' ), BOOKMARKPOST_VERSION, true );
+			wp_localize_script(
+				'bookmark-admin-js',
+				'bp_admin_ajax',
+				array(
+					'ajax_url' => admin_url( 'admin-ajax.php' ),
+					'nonce'    => wp_create_nonce( 'bp_ajax_nonce' ),
+				)
+			);
+		}
 	}
+
 }
 
 // Initialize the class.
 new BookmarkPostAdmin();
-
